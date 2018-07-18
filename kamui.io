@@ -9,7 +9,7 @@ KUIWidget := Object clone do (
 	parentcenter := Point clone
 	center := Point clone
 	offset := Point clone
-	
+
 	zlayer := 0
 
 	img := Image clone
@@ -29,11 +29,11 @@ KUIWidget := Object clone do (
 		?widgetLint
 		return bbox
 	)
-	
+
 	size := method( return bbox size )
-	
+
 	_calculateSize := method ( return size )
-	
+
 	calculateBbox := method(
 		_calculateBbox
 		children foreach(c, c ?calculateBbox)
@@ -42,7 +42,7 @@ KUIWidget := Object clone do (
 		children foreach(c, c ?calculateSize)
 		return _calculateSize
 	)
-	setParent := method(p, 
+	setParent := method(p,
 		self parent := p
 		p children append(self)
 	)
@@ -50,11 +50,11 @@ KUIWidget := Object clone do (
 KUIContainer := KUIWidget clone do (
 	widgetLint := method(
 		if(children size < 1,
-			children foreach(c, 
+			children foreach(c,
 				if(c zlayer <= zlayer, c zlayer := (zlayer + 1))
 			)
 			children foreach(c, c ?widgetLint)
-			children foreach(c, 
+			children foreach(c,
 				self bbox := bbox Union(c bbox)
 			)
 		)
