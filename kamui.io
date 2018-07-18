@@ -1,5 +1,9 @@
 #!/usr/bin/env io
 
+Box := Object clone
+Point := Object clone
+Image := Object clone
+
 KUIWidget := Object clone do (
 	/* parent & children here are used only for layout */
 	parent := nil
@@ -47,6 +51,7 @@ KUIWidget := Object clone do (
 		p children append(self)
 	)
 )
+
 KUIContainer := KUIWidget clone do (
 	widgetLint := method(
 		if(children size < 1,
@@ -61,4 +66,3 @@ KUIContainer := KUIWidget clone do (
 		return bbox
 	)
 )
-
