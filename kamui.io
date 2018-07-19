@@ -1,8 +1,68 @@
 #!/usr/bin/env io
 
-Box := Object clone
-Point := Object clone
-Image := Object clone
+Point := Object clone do (
+    x := 0
+    y := 0
+
+    set := method(x, y,
+        self x := x
+        self y := y
+        self
+    )
+
+    + := method(p,
+        newx := x + (p x)
+        newy := y + (p y)
+        Point clone set(newx, newy)
+    )
+
+    * := method(p,
+        newx := x * (p x)
+        newy := y * (p y)
+        Point clone set(newx, newy)
+    )
+
+    asString := method(
+        "Point(" .. x .. ", " .. y .. ")"
+    )
+)
+
+Box := Object clone do (
+    _origin := Point clone
+    _size := Point clone
+
+    /* this is origin, size -- not origin, topRight */
+    set := method(origin, size,
+        self _origin := origin
+        self _size := size
+        self
+    )
+
+    size := method(
+        // Point clone set ((size x)-(origin x)) ((size y)-(origin y))
+        _size
+    )
+
+    origin := method(
+        _origin
+    )
+
+    asString := method(
+        "Box @ " .. origin .. ", size " .. size
+    )
+)
+
+Image := Object clone do (
+    dims := Point clone
+
+    width := method(
+        dims x
+    )
+
+    height := method(
+        dims y
+    )
+)
 
 KUIWidget := Object clone do (
 	/* parent & children here are used only for layout */
