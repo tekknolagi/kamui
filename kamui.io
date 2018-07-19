@@ -87,8 +87,9 @@ KUIWidget := Object clone do (
 		e catch (
 			parentBbox := Box clone set(Point clone, Point clone)
 		)
+
 		bboxOrigin := ((parentBbox origin) + ((parentBbox size)*(parentcenter))) + offset
-		bboxSize := Point clone set (img width, img height)
+		bboxSize := Point clone set(img width, img height)
 		self bbox := Box clone set(bboxOrigin, bboxSize)
 		?widgetLint
 		return bbox
